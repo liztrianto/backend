@@ -28,6 +28,16 @@ app.get('/test', (req, res) => {
     res.send(artikel)
 })
 
+app.get('/barcode', (req, res) => {
+
+    if (req.url.indexOf('/?bcid=') != 0) {
+        res.writeHead(404, { 'Content-Type':'text/plain' });
+        res.end('BWIPJS: Unknown request format.', 'utf8');
+    } else {
+        bwipjs.request(req, res); // Executes asynchronously
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

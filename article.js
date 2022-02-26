@@ -1,6 +1,10 @@
 const express = require('express')
+const cors = require('cors');
+const bwipjs = require('bwip-js');
 const app = express()
 const port = 3000
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -39,6 +43,19 @@ app.get('/test', (req, res, next) => {
     // const dataartikel = {data:data}
     res.send(dataartikel)
 
+    
+})
+
+   
+
+app.get('/barcode', (req, res) => {
+
+    if (req.url.indexOf('/?bcid=') != 0) {
+        res.writeHead(404, { 'Content-Type':'text/plain' });
+        res.end('BWIPJS: Unknown request format.', 'utf8');
+    } else {
+        bwipjs.request(req, res); // Executes asynchronously
+    }
     
 })
 
