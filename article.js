@@ -100,30 +100,6 @@ app.get('/testmysql/:id', (req, res, next) => {
 
 })
 
-// // const upload = multer({dest : 'uploads/'})
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'uploads/');
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, file.originalname);
-//     }
-// })
-
-// const multerUpload = multer({ storage: storage });
-
-// app.post('/upload/', multerUpload.single('picture'), function (req, res, next) {
-//     // req.file is the `avatar` file
-//     // console.log(req.file)
-//     const picture = req.file;
-//     if (!picture) {
-//         res.status(400).json({ 'message': 'picture cannot be empty' });
-//         return
-//     }
-//     res.send(picture);
-// });
-
-
 app.post('/testmysql/', (req, res, next) => {
 
     // console.log(req.file)
@@ -220,42 +196,6 @@ app.delete('/file/:namefile', async function (req, res, next) {
     res.delete(`${urlpath}/${namefile}`)
     
 })
-
-
-
-
-// var mysql = require('mysql');
-// var connection = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     database: 'backend'
-// });
-
-// var pool = mysql.createPool(connection);
-
-// app.get('/testmysql', (req, res) => {
-//     connection.connect();
-
-//     connection.query('select * from article', function (error, results, fields) {
-//         if (error) {
-//             res.send('error')
-//             connection = reconnect(connection);
-//         }else{
-//             // const dataartikel= results
-//             // console.log(dataartikel);
-//             // res.send('The solution is: '+results[0].Judul)
-//             // res.send('tes')
-//             res.send(results);
-//             // res.send(dataartikel);
-
-//         };
-
-//     });
-//     connection.end();
-
-// })
-
 
 
 app.listen(port, () => {
